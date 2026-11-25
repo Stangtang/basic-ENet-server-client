@@ -1,0 +1,17 @@
+#pragma once
+
+#include <cstddef>
+
+#include "enet.h"
+
+namespace server {
+inline constexpr const char* host_name = "127.0.0.1";
+inline constexpr enet_uint16 port = 7777;
+}  // namespace server
+
+namespace client {
+inline constexpr size_t outgoing_connections = 1;
+inline constexpr size_t channels = 1;
+inline constexpr enet_uint32 incoming_bandwidth = 0, outgoing_bandwidth = 0;  // do not limit bandwidth
+inline constexpr enet_uint32 connection_wait_ms = 5000, disconnect_wait_ms = 3000, loop_wait_ms = 1000;
+}  // namespace client
