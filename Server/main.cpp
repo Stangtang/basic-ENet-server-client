@@ -11,7 +11,7 @@ int main() {
     }
     std::atexit(&enet_deinitialize);
 
-    ENetAddress address;
+    ENetAddress address{};
     address.host = ENET_HOST_ANY;
     address.port = server::port;
 

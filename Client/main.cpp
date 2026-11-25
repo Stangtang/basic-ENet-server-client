@@ -20,7 +20,7 @@ int main() {
     }
     std::atexit([] { enet_host_destroy(client); });
 
-    ENetAddress address;
+    ENetAddress address{};
     address.port = server::port;
     if (enet_address_set_host(&address, server::host_name)) {
         std::cerr << "Failed to resolve server hostname '" << server::host_name << "'.\n";
