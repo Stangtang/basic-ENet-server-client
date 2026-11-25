@@ -65,11 +65,10 @@ int main() {
 
     // pass 0 to send no data when disconnecting
     enet_peer_disconnect(peer, 0);
-
     while (enet_host_service(client, &event, client::disconnect_wait_ms) > 0) {
         switch (event.type) {
             case ENET_EVENT_TYPE_RECEIVE:
-            // discard any packets received while waiting for disconnection to finish
+                // discard any packets received while waiting for disconnection to finish
                 enet_packet_destroy(event.packet);
                 break;
             case ENET_EVENT_TYPE_DISCONNECT:
