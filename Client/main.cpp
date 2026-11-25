@@ -37,7 +37,7 @@ int main() {
 
     // check if server has responded
     ENetEvent event;
-    if (enet_host_service(client, &event, client::connection_wait_ms) > 0 && event.type == ENET_EVENT_TYPE_CONNECT) {
+    if (enet_host_service(client, &event, client::connect_timeout_ms) > 0 && event.type == ENET_EVENT_TYPE_CONNECT) {
         std::cout << "Connection to " << server::host_name << ':' << server::port << " succeeded.\n";
     } else {
         enet_peer_reset(peer);
@@ -47,7 +47,7 @@ int main() {
 
     // PROGRAM LOOP START
 
-    while (enet_host_service(client, &event, client::loop_wait_ms) > 0) {
+    while (enet_host_service(client, &event, client::event_idle_timeout_ms) > 0) {
         switch (event.type) {
             case ENET_EVENT_TYPE_RECEIVE:
                 // use printf as it is much easier
@@ -65,7 +65,7 @@ int main() {
 
     // pass 0 to send no data when disconnecting
     enet_peer_disconnect(peer, 0);
-    while (enet_host_service(client, &event, client::disconnect_wait_ms) > 0) {
+    while (enet_host_service(client, &event, client::disconnect_timeout_ms) > 0) {
         switch (event.type) {
             case ENET_EVENT_TYPE_RECEIVE:
                 // discard any packets received while waiting for disconnection to finish
