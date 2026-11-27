@@ -2,6 +2,8 @@
 
 A minimal C++ example of a client connecting to a server using ENet. I made this as a jumping-off point for any future projects I might build with ENet.
 
+The server code is in [`Server/main.cpp`](Server/main.cpp), and the client code is in [`Client/main.cpp`](Client/main.cpp).
+
 ## Build and run
 
 ENet is included in the repo.
